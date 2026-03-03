@@ -1,10 +1,28 @@
+'use client';
 import '@/components/Prizes/prizes.css';
 import Cup from '@/components/Prizes/Trophies/Cup';
+import { motion } from 'framer-motion';
 
 const Trophies = () => {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
+  };
+
   return (
     <>
-      <div className="z-10 hidden h-fit w-full items-center justify-evenly gap-8 p-2 md:flex [&>*]:backdrop-brightness-90">
+      <motion.div
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        className="z-10 hidden h-fit w-full items-center justify-evenly gap-8 p-2 md:flex [&>*]:backdrop-brightness-90"
+      >
         <Cup
           cupImage={'/GoldenCup.webp'}
           cupColor={'gold'}
@@ -19,8 +37,14 @@ const Trophies = () => {
           prize={'2nd Prize'}
           amount="50"
         />
-      </div>
-      <div className="flex h-fit w-full flex-col items-center justify-start gap-16 p-4 md:hidden">
+      </motion.div>
+      <motion.div
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        className="flex h-fit w-full flex-col items-center justify-start gap-16 p-4 md:hidden"
+      >
         <Cup
           cupImage={'/GoldenCup.webp'}
           cupColor={'gold'}
@@ -35,7 +59,7 @@ const Trophies = () => {
           prize={'2nd Prize'}
           amount="50"
         />
-      </div>
+      </motion.div>
     </>
   );
 };

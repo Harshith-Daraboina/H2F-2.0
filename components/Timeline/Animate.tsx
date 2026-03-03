@@ -14,6 +14,7 @@ export function DesktopAnimate({ children }: { children: React.ReactNode }) {
     6.72 / 20,
     8.52 / 20,
     10.33 / 20,
+    12.14 / 20,
   ];
 
   useGSAP(() => {
@@ -150,9 +151,9 @@ export function DesktopAnimate({ children }: { children: React.ReactNode }) {
 }
 
 export function MobileAnimate({ children }: { children: React.ReactNode }) {
-  const timelineNums = 6;
-  const positions = [0, 6, 20, 35, 50, 60]; // rocket positions
-  const heightsForSatellite = [0, 400, 410, 413, 410, 412]; // satellite positions to move at indexes
+  const timelineNums = 7;
+  const positions = [0, 6, 20, 35, 50, 60, 75]; // rocket positions
+  const heightsForSatellite = [0, 400, 410, 413, 410, 412, 414]; // satellite positions to move at indexes
 
   useGSAP(() => {
     let progress = 0;

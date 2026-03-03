@@ -1,4 +1,6 @@
 import Image from 'next/image';
+import { motion, useMotionValue, useTransform, animate, useInView } from 'framer-motion';
+import { useEffect, useRef } from 'react';
 
 interface CupProps {
   cupImage: string;
@@ -9,8 +11,31 @@ interface CupProps {
 }
 
 const Cup = ({ prize, cupImage, cupColor, className, amount }: CupProps) => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const count = useMotionValue(0);
+  const rounded = useTransform(count, Math.round);
+
+  useEffect(() => {
+    if (isInView && amount && amount !== "Not Decided") {
+      animate(count, parseFloat(amount), { duration: 2 });
+    }
+  }, [isInView, amount, count]);
+
+  const itemVariants = {
+    hidden: { opacity: 0, scale: 0.8, y: 50 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      y: 0,
+      transition: { type: "spring", stiffness: 100, damping: 12 }
+    }
+  };
+
   return (
-    <div
+    <motion.div
+      ref={ref}
+      variants={itemVariants}
       className={
         'cup-div group relative flex w-[70%] flex-col items-center justify-center border-l-2 border-r-2 py-2 before:transition before:delay-75 before:duration-300 before:ease-in hover:before:opacity-70 sm:w-3/5 md:w-[30%] lg:w-1/4 xl:w-[17%] ' +
         className
@@ -45,11 +70,16 @@ const Cup = ({ prize, cupImage, cupColor, className, amount }: CupProps) => {
           }
         >
           {!amount && <span>Revealing Soon</span>}
-          {amount != "Not Decided" && <span>₹ {amount},000</span>}
+          {amount === "Not Decided" && <span>Not Decided</span>}
+          {amount && amount !== "Not Decided" && (
+            <>
+              <span>₹ <motion.span>{rounded}</motion.span>,000</span>
+            </>
+          )}
           <span>Cash Prize</span>
         </span>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

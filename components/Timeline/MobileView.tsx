@@ -1,17 +1,42 @@
+'use client';
 import Image from 'next/image';
 import { MobileAnimate } from './Animate';
 import ColoredCard from './ColoredCard';
 import { timelines } from './content';
+import { motion } from 'framer-motion';
+import React, { useRef } from 'react';
+import { useScroll, useTransform } from 'framer-motion';
 
 export default function MobileView() {
+  const targetRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: targetRef,
+    offset: ["start end", "end start"]
+  });
+
+  const headingX = useTransform(scrollYProgress, [0, 1], ["-5%", "5%"]);
+  const backgroundHeadingX = useTransform(scrollYProgress, [0, 1], ["15%", "-15%"]);
+
   return (
-    <div className="relative flex grow flex-col items-center gap-2 overflow-x-hidden">
-      <div className="font-anton absolute left-4 top-0 text-[4.4rem] uppercase text-[#1b1e24] sm:left-16">
-        Timeline
+    <div ref={targetRef} className="relative flex grow flex-col items-center gap-2 overflow-x-hidden">
+      <div className="z-[2] w-full max-w-7xl mx-auto text-white mt-16 mb-12">
+        <motion.h1
+          style={{ x: headingX }}
+          initial={{ opacity: 0, y: 50, filter: 'blur(10px)' }}
+          whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="font-anton relative left-8 z-[2] w-full text-[3rem] uppercase leading-[1] text-white sm:left-20 md:text-[90px] mt-10"
+        >
+          TimeLine
+          <motion.span
+            style={{ x: backgroundHeadingX }}
+            className="font-anton absolute -bottom-3 -left-2 z-[-1] text-[4.4rem] text-[#1b1e24] md:-left-8 md:text-[200px]"
+          >
+            TimeLine
+          </motion.span>
+        </motion.h1>
       </div>
-      <h1 className="font-anton relative z-[2] mb-20 w-full p-4 px-8 pt-10 text-[2.4rem] font-bold uppercase">
-        Timeline
-      </h1>
       <MobileAnimate>
         <div
           id="mobile-timeline-rocket"

@@ -39,7 +39,7 @@ export default function ColoredCard({
       className={`relative m-3 h-fit min-w-40 max-w-60 shrink-0 rounded border bg-black bg-opacity-10 p-4 pt-2 md:m-2 md:min-w-56 md:max-w-64 lg:m-4 ${borderColorVariants[color]} ${odd && 'mt-10'}`}
     >
       <p
-        className={`absolute -left-2 top-0 flex min-h-9 w-40 -translate-y-1/2 items-center justify-center text-center md:w-fit ${bgColorVariants[color]} rounded px-2`}
+        className={`absolute -left-2 top-0 flex min-h-9 w-40 -translate-y-1/2 items-center justify-center text-center text-white md:w-fit ${bgColorVariants[color]} rounded px-2`}
       >
         {time}
       </p>

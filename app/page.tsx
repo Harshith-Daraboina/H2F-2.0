@@ -4,8 +4,10 @@ import Landing from '@/components/Landing';
 import Prizes from '@/components/Prizes/Prizes';
 import ProblemStatements from '@/components/ProblemStatements/Index';
 import Sponsors from '@/components/Sponsors';
+import SponsorshipTiers from '@/components/SponsorshipTiers';
 import Timeline from '@/components/Timeline';
 import { Metadata } from 'next';
+import Team from '@/components/Team';
 
 export default function Home() {
   return (
@@ -19,6 +21,8 @@ export default function Home() {
       <Prizes />
       <Timeline />
       <Sponsors />
+      <SponsorshipTiers />
+      <Team />
       <FAQs />
     </main>
   );

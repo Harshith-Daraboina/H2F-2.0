@@ -1,25 +1,25 @@
+'use client';
 import TempTimeLine from '../Temp-Timeline';
+import React, { useRef } from 'react';
 import DesktopView from './DesktopView';
-import './index.css';
 import MobileView from './MobileView';
 
+
 export default function Timeline() {
+  const sectionRef = useRef<HTMLElement>(null);
+
+
+
   return (
-    <div
-      id="timeline"
-      className="z-10 flex h-fit w-full scroll-mt-14 flex-col gap-10 bg-[#070b0d] p-4 py-20 sm:px-0"
-      data-idx="3"
-    >
-      <div className="flex size-full overflow-y-auto md:hidden">
-        <MobileView />
+    <section ref={sectionRef} className="relative z-40 w-full min-h-[100dvh]" id="timeline" data-idx="4">
+      <div className="timeline-inner-scale relative flex min-h-[100dvh] w-full flex-col gap-10 p-4 py-20 sm:px-0 bg-[#070b0d] transform-origin-top">
+        <div className="size-full overflow-hidden max-md:hidden">
+          <DesktopView />
+        </div>
+        <div className="size-full md:hidden">
+          <MobileView />
+        </div>
       </div>
-      <div className="size-full overflow-hidden max-md:hidden">
-        <DesktopView />
-      </div>
-      {/* <div className="grow relative flex flex-col items-center gap-4">
-        <span className="text-3xl uppercase">Revealing Soon...</span>
-      </div> */}
-      {/* <TempTimeLine/> */}
-    </div>
+    </section>
   );
 }
