@@ -13,6 +13,7 @@ export interface SponsorCardProps {
   name: string;
   website: string;
   logo: string;
+  alt?: string;
   bgColor1?: string;
   bgColor2?: string;
   fillOpacity?: string;
@@ -24,6 +25,7 @@ export const SponsorCard: React.FC<SponsorCardProps> = ({
   name,
   website,
   logo,
+  alt,
   bgColor1,
   bgColor2,
   fillOpacity = '0.11',
@@ -104,28 +106,28 @@ export const SponsorCard: React.FC<SponsorCardProps> = ({
             height={80}
             width={80}
             src={logo}
-            alt={`${name} logo`}
+            alt={alt || `${name} logo`}
             className="absolute left-0 top-0 z-30 h-full w-full object-contain opacity-100 group-hover:translate-x-[-8%] group-hover:translate-y-[-10%] group-hover:rotate-[10deg] group-hover:-skew-x-2 group-hover:-skew-y-2"
           />
           <Image
             height={80}
             width={80}
             src={logo}
-            alt={`${name} logo`}
+            alt={alt || `${name} logo`}
             className="absolute left-0 top-0 z-20 h-full w-full object-contain opacity-80 group-hover:translate-x-[-6%] group-hover:translate-y-[-6%] group-hover:rotate-[10deg] group-hover:-skew-x-2 group-hover:-skew-y-2 group-hover:hue-rotate-30"
           />
           <Image
             height={80}
             width={80}
             src={logo}
-            alt={`${name} logo`}
+            alt={alt || `${name} logo`}
             className="absolute left-0 top-0 z-10 h-full w-full object-contain opacity-60 group-hover:translate-x-[-4%] group-hover:translate-y-[-3%] group-hover:rotate-[10deg] group-hover:-skew-x-2 group-hover:-skew-y-2 group-hover:hue-rotate-30"
           />
           <Image
             height={50}
             width={50}
             src={logo}
-            alt={`${name} logo`}
+            alt={alt || `${name} logo`}
             className="absolute left-0 top-0 h-full w-full object-contain opacity-40 group-hover:rotate-[10deg] group-hover:-skew-x-2 group-hover:-skew-y-2 group-hover:hue-rotate-30"
           />
         </div>
